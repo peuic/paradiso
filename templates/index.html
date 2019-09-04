@@ -1,10 +1,36 @@
 <html>
-    <head>
-        <title>Paradiso</title>
     <body>
-        <form method="POST" action="/movie">
-            Movie Search: <input type="text" name="movie">
-          <input type="submit">
-        </form>
+        <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm">
+            <a class="navbar-brand" href="/">Paradiso</a>
+    
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                                                                                                            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        </header>
     </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity=""
+                                                                                                           crossorigin="anonymous">
+    <link href="/static/styles.css" rel="stylesheet">
+    <div class="container">
+        <div class="container">
+            <div class="p-5 card shadow-sm mt-5">
+                <head>
+                    <title>Paradiso</title>
+                </head>
+                <body>
+                    <form method="POST" action="/movie">
+                        <b>Movie Search:</b> <input type="text" name="movie">
+                    <input type="submit">
+                    </form>
+                </body>
+            </div>
+        </div>
+    </div>
 </html>
