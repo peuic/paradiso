@@ -5,8 +5,9 @@ from flask import Flask, request, redirect, render_template, request, url_for
 from bson.json_util import dumps
 from pymongo import MongoClient
 
-client = MongoClient('localhost:27017')
-db = client.movieDB
+uri = "mongodb://heroku_g1rjwwrr:1849hspa91t3u2vughfr3ql0kk@ds019668.mlab.com:19668/heroku_g1rjwwrr"
+client = MongoClient(uri,connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True, retryWrites=False )
+db = client.get_default_database()
 
 app = Flask(__name__)
 
