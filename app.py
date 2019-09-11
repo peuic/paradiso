@@ -58,4 +58,4 @@ def add_movie_fallback(name):
 	return render_template('not_found.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=33507)
