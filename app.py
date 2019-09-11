@@ -1,3 +1,4 @@
+import os
 import json
 import re
 import requests
@@ -58,4 +59,4 @@ def add_movie_fallback(name):
 	return render_template('not_found.html')
 
 if __name__ == '__main__':
-    app.run()
+	app.run_server(debug=True)
