@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
                                                                                                            crossorigin="anonymous">
     <link href="/static/styles.css" rel="stylesheet">
+    <h2 class="row justify-content-center">The following movie was added to the DB</h2>
     <div class="container">
         <div class="p-5 card shadow-sm mt-5">
             <div class="row justify-content-center">
@@ -28,14 +29,9 @@
                     <p><b>{{movie['Title']}}</b></p>
                     <p><b>Plot: </b>{{movie['Plot']}}</p> 
                     <p><b>Diretor: </b>{{movie['Director']}}</p> 
-                    <p><b>Cast: </b>{{movie['Actors']}}</p> 
-                    <p><b>Writers: </b>{{movie['Writer']}}</p> 
-                    <p><b>Awards: </b>{{movie['Awards']}}</p> 
-                    <p><b>Rating by imdb: </b>{{movie['imdbRating']}}</p> 
-                    <p><b>Metascore: </b>{{movie['Metascore']}}</p> 
             </div>
                     <form method="GET" action='/'>
-                    <button type='submit'>Back</button></form> 
+                    <button type='submit'>Voltar</button></form> 
             </div>
         </div>
     </div>

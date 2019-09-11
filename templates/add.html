@@ -24,12 +24,12 @@
                 <head>
                     <title>Paradiso</title>
                 </head>
+                <h2 class="row justify-content-center">Add movies to the DB</h2>
                 <body>
-                    <h3>Movie not found =/</h3>
-                    <form method="GET" action='/add'>
-                    <button type='submit'>Add Movie</button></form> 
-                    <form method="GET" action='/'>
-                    <button type='submit'>Back</button></form> 
+                    <form method="POST" action="/added">
+                        <b>Movie Search:</b> <input type="text" name="movie">
+                    <input type="submit">
+                    </form>
                 </body>
             </div>
         </div>

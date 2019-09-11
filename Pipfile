@@ -9,6 +9,8 @@ verify_ssl = true
 flask = "*"
 requests = "*"
 flask-bootstrap = "*"
+pymongo = "*"
+mongo = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,29 +1,57 @@
 import json
 import re
-from flask import Flask, request, render_template, request, url_for
+import requests
+from flask import Flask, request, redirect, render_template, request, url_for
+from bson.json_util import dumps
+from pymongo import MongoClient
+
+client = MongoClient('localhost:27017')
+db = client.movieDB
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
   return render_template('index.html')
+
+@app.route('/add')
+def add():
+  return render_template('add.html')
   
-@app.route('/greet')
-def say_hello():
-  return "Hello me, it's me again!"
+@app.route('/added', methods=['POST'])
+def add_movie():
+
+	movie_name = request.form['movie']
+	parsed_query = movie_name.replace(" ","+")
+	url = f"http://www.omdbapi.com/?t={parsed_query}&apikey=PlzBanM3"
+	response = requests.get(url)
+	movie_object = response.json()
+
+	if not movie_object.get('Error'):
+		status = db.Movies.insert_one(movie_object)
+		return render_template('added_movie.html', movie=movie_object)
+	return render_template('not_found.html')
 
 @app.route('/movie', methods=['POST'])
 def search():
 	movie_name = request.form['movie']
-	selected_movie = ""
+	movie_regex = re.compile(f"{movie_name}(.*)", re.IGNORECASE)
+	movie_search = db.Movies.find({"Title":movie_regex})
+	movie_list = json.loads(dumps(movie_search))
+	if not movie_list:
+		return redirect(url_for('add_movie_fallback', name=movie_name))
+	movie = movie_list[0]
 
-	with open('movies.json', 'r') as data:
-		data = data.read()
-		movie_list = json.loads(data)
-		for movie in movie_list:
-			if re.search(movie_name, movie['Title'], re.IGNORECASE):
-				selected_movie = movie
+	return render_template('movie.html', movie=movie)
 
-	if not selected_movie:
-		return render_template('not_found.html')
+@app.route('/added/<name>', methods=['GET'])
+def add_movie_fallback(name):
 
-	return render_template('movie.html', movie=selected_movie)
+	parsed_query = name.replace(" ","+")
+	url = f"http://www.omdbapi.com/?t={parsed_query}&apikey=PlzBanM3"
+	response = requests.get(url)
+	movie_object = response.json()
+	if not movie_object.get('Error'):
+		status = db.Movies.insert_one(movie_object)
+		return render_template('added_movie.html', movie=movie_object)
+	return render_template('not_found.html')
