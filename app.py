@@ -56,3 +56,6 @@ def add_movie_fallback(name):
 		status = db.Movies.insert_one(movie_object)
 		return render_template('added_movie.html', movie=movie_object)
 	return render_template('not_found.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
