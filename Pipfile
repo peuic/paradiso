@@ -12,6 +12,7 @@ flask-bootstrap = "*"
 pymongo = "*"
 mongo = "*"
 gunicorn = "*"
+ordereddict = "*"
 
 [requires]
 python_version = "3.7"
