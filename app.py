@@ -59,7 +59,7 @@ def search():
 @app.route("/added/<name>", methods=["GET"])
 def add_movie_fallback(name):
     parsed_query = name.replace(" ", "+")
-    url = f"http://www.omdbapi.com/?t={parsed_query}&apikey=PlzBanM3"
+    url = f"http://www.omdbapi.com/?t={parsed_query}&apikey=6de38469"
     response = requests.get(url)
     movie_object = response.json()
     if not movie_object.get("Error"):
